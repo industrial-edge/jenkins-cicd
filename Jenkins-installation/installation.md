@@ -4,6 +4,9 @@
   - [Installing Jenkins](#installing-jenkins)
   - [Installation steps](#installation-steps)
   - [Post-Installation steps](#post-installation-steps)
+    - [Unlocking Jenkins](#unlocking-jenkins)
+    - [Customize Jenkins](#customize-jenkins)
+    - [Create user](#create-user)
   
 
 ## Installing Jenkins 
@@ -52,9 +55,11 @@ To install Jenkins on your linux device, follow these instructions:
 
 
 ## Post-Installation steps 
+
+### Unlocking Jenkins 
 In order to start using Jenkins, you have to unlock it using initilized setup wizard. When you first access a new Jenkins instance, you are asked to unlock it using an automatically-generated password.
 
-1) Go to [](http://localhost:8080) using your favourite browser and wait until Jenkins unlock page appears. 
+1) Go to [http://localhost:8080]() using your favourite browser and wait until Jenkins unlock page appears. 
 
 <img src="./graphics/unlock.PNG" width="500"/>
 
@@ -67,3 +72,32 @@ In order to start using Jenkins, you have to unlock it using initilized setup wi
 And copy the output administrator password. 
 
 <img src="./graphics/admin_pswrd.PNG" width="500"/>
+
+
+### Customize Jenkins 
+
+After unlocking, the Customize Jenkins page appears. Here you can install any number of usefull plugins as part of your initial setup. 
+
+For this example, we will need to connect Jenkins with GitHub and therefore we need to install GitHub plugin. 
+
+1) Click on "Install selected plugins". 
+
+<img src="./graphics/customize_jenkins.PNG" width="500"/>
+
+2) Search for "GitHub plugin" in input form and check the GitHub plugin. 
+
+
+<img src="./graphics/install_github.PNG" width="500"/>
+
+3) Click on "install". The installation and setup of Jenkins with selected plugins will start automatically. 
+
+### Create user
+
+After succesfull installation a create new user form should appear. 
+
+1) Fill in the form in orded to create new user. 
+
+<img src="./graphics/create_usere.PNG" width="500"/>
+
+2) Click "Save and continue" -> "Save and finish" -> "Start using Jenkins". 
+3) Congratulations! You are now ready to build Jenkins pipelines!
