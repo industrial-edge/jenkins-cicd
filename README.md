@@ -19,3 +19,36 @@ The main goal of this example is to show how to setup Jenkins server and create 
 
 <img src="./graphics/overview.png" width="700"/>
 
+## Requirements
+
+###  Prerequisities
+
+- Installed Industrial Edge Management
+- Installed system configurators
+- Installed system applications
+- Development VM with docker installed
+
+
+### Used components
+
+- Industrial Edge Device V 1.1.0-34
+- Industrial Edge Management system V 1.1.0-39-amd64
+- Ubuntu 20.04 development VM
+- Docker V 19.03.13
+
+
+## Installation steps
+
+
+## Documentation
+
+- You can find further documentation and help in the following links
+  - [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/#/documentation)
+  - [Industrial Edge Forum](https://www.siemens.com/industrial-edge-forum)
+  - [Industrial Edge landing page](https://new.siemens.com/global/en/products/automation/topic-areas/industrial-edge/simatic-edge.html)
+  
+## Contribution
+Thanks for your interest in contributing. Anybody is free to report bugs, unclear documenation, and other problems regarding this repository in the Issues section or, even better, is free to propose any changes to this repository using Merge Requests.
+
+## Licence & Legal Information
+Please read the [Legal information](LICENSE.md)
