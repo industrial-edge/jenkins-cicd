@@ -15,7 +15,7 @@ Automate process of uploading apps to IEM with Jenkins.
 This application example shows how to create Jenkins CI/CD pipelines to automatically upload applications to Industrial Edge Management system.
 
 ### General task
-The main goal of this example is to show how to setup Jenkins server and create Jenkins pipelines to upload applications to IEM. Jenkins can be integrated with several Git providers but GitHub is used for this example. With GitHub webhook feature it is possible on every commitment to the GitHub repository to automatically trigger Jenkins pipeline that build, test and upload application to IEM. 
+The main goal of this example is to show how to setup Jenkins server and create Jenkins pipelines to upload applications to IEM. Jenkins can be integrated with several Git providers but GitHub is used for this example. With GitHub webhook feature it is possible on every commitment to the GitHub repository to automatically trigger Jenkins pipeline on a Jenkins server that build, test and upload application to IEM. 
 
 <img src="./graphics/overview.png" width="700"/>
 
@@ -27,6 +27,7 @@ The main goal of this example is to show how to setup Jenkins server and create 
 - Installed system configurators
 - Installed system applications
 - Development VM with docker installed
+- Developmennt VM has connection to IEM
 
 
 ### Used components
@@ -38,7 +39,9 @@ The main goal of this example is to show how to setup Jenkins server and create 
 
 
 ## Installation steps
+The repository is devided into two main directories. The [Jenkins-installation](./Jenkins-installation) describes the process of setting up the Jenkins server in order to run CI/CD jobs. The documentation for the installation steps can be found [here](./Jenkins-installation/installation.md). 
 
+The [pipelines](./pipelines) folder constist of Jenkins pipeline implementation using either shell script or docker. The documentation for each implementation describes the process of connecting GitHub repository with Jenkins using webhooks and creating Jenkins pipelines to automatically upload app to IEM on every push. 
 
 ## Documentation
 
