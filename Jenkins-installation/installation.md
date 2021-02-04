@@ -20,14 +20,14 @@ To install Jenkins on your linux device, follow these instructions:
 
 1) Jenkins is build using Java and therefore we need to have Java installed. To do that go to your terminal and run this commands
 
-    ```txt
+    ```bash
     sudo apt-get update
     sudo apt-get install openjdk-8-jdk
     java -version
     ```
 2) Then install Jenkins by running following commands 
 
-    ```shell
+    ```bash
     wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
     sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
     /etc/apt/sources.list.d/jenkins.list'
@@ -37,7 +37,7 @@ To install Jenkins on your linux device, follow these instructions:
 
 3) You can start aand check the Jenkins service with the command:
 
-    ```shell
+    ```bash
     sudo systemctl start jenkins
     sudo systemctl status jenkins
     ```
