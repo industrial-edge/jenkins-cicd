@@ -56,7 +56,7 @@ In order to start using Jenkins, you have to unlock it using initilized setup wi
 
 1) Go to [](http://localhost:8080) using your favourite browser and wait until Jenkins unlock page appears. 
 
-<img src="./graphics/unlock.png" width="500"/>
+<img src="./graphics/unlock.PNG" width="500"/>
 
 2) To get administator password, run this command 
 
@@ -66,4 +66,4 @@ In order to start using Jenkins, you have to unlock it using initilized setup wi
 
 And copy the output administrator password. 
 
-<img src="./graphics/admin_pswrd.png" width="500"/>
+<img src="./graphics/admin_pswrd.PNG" width="500"/>
