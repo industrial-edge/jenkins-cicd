@@ -3,6 +3,7 @@
 - [Installation of Jenkins server](#installation-of-jenkins-server)
   - [Installing Jenkins](#installing-jenkins)
   - [Installation steps](#installation-steps)
+  - [Post-Installation steps](#post-installation-steps)
   
 
 ## Installing Jenkins 
@@ -48,3 +49,21 @@ To install Jenkins on your linux device, follow these instructions:
     Loaded: loaded (/etc/rc.d/init.d/jenkins; generated)
     Active: active (running) since Tue 2018-11-13 16:19:01 +03; 4min 57s ago
     ```
+
+
+## Post-Installation steps 
+In order to start using Jenkins, you have to unlock it using initilized setup wizard. When you first access a new Jenkins instance, you are asked to unlock it using an automatically-generated password.
+
+1) Go to [](http://localhost:8080) using your favourite browser and wait until Jenkins unlock page appears. 
+
+<img src="./graphics/unlock.png" width="500"/>
+
+2) To get administator password, run this command 
+
+    ```bash
+    sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+    ```
+
+And copy the output administrator password. 
+
+<img src="./graphics/admin_pswrd.png" width="500"/>
