@@ -50,7 +50,41 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
 
 
 ## Create GitHub repository 
+*Prerequisities:*
+*- GitHub account is created*
+*- VS code is used for pushing code to remote GitHub repository*
 
+1) Go to [github](https://github.com/) and sign in with your credentials. 
+
+2) Navigate to your profile and with "plus" button in the right upper corner select "New repository". 
+
+3) Give your repository required information 
+
+    ```txt
+    - Repository name
+    - Choose public repository
+    ```
+*Note: Public repository is chosen to shorten the lenght of this documentation. You can also select private but be aware of setting up ssh key and Jenkins credentials for succesfull connection with GitHub. See: [jenkins with private github reposiotory](https://medium.com/@shreyaklexheal/integrate-jenkins-with-github-private-repo-8fb335494f7e)*
+
+<img src="graphics/create_repo.gif" width="1000"/>
+
+4) Clone this repository to your local development PC using `git clone <repositoryname>` command. 
+
+5) Open VS code inside of an empty folder. 
+
+6) Copy application file from shell [src](./pipelines/shell/src) folder to the empty folder. 
+
+7) Push this code to your repository by running this commands in terminal: 
+   
+    ```bash
+    git init
+    git add --all
+    git commit -m "first commit"
+    git branch -M main
+    git remote add origin https://github.com/paveel-h/JenkinsShell.git
+    git push -u origin main
+    ```
+<img src="graphics/push_to_repo.gif" width="1000"/>
 
 ## Create Jenkins pipeline
 
