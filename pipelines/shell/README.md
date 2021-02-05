@@ -5,6 +5,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
 - [Creating Jenkins pipelines using shell script](#creating-jenkins-pipelines-using-shell-script)
   - [Create project and application in IEM](#create-project-and-application-in-iem)
   - [Create GitHub repository](#create-github-repository)
+  - [Install IE Publisher CLI on Jenkins server](#install-ie-publisher-cli-on-jenkins-server)
   - [Create Jenkins pipeline](#create-jenkins-pipeline)
   - [Create GitHub webhook](#create-github-webhook)
 
@@ -12,6 +13,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
 
 ## Create project and application in IEM 
 *Prerequisities:*
+
 *- IEM isntalled and configured*
 
 1) Go to the "Applications" section of your Edge Management system. 
@@ -51,7 +53,9 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
 
 ## Create GitHub repository 
 *Prerequisities:*
+
 *- GitHub account is created*
+
 *- VS code is used for pushing code to remote GitHub repository*
 
 1) Go to [github](https://github.com/) and sign in with your credentials. 
@@ -68,11 +72,11 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
 
 <img src="graphics/create_repo.gif" width="1000"/>
 
-4) Clone this repository to your local development PC using `git clone <repositoryname>` command. 
+4) Clone this repository to your local development PC using `git clone <repositoryURL>` command. 
 
 5) Open VS code inside of an empty folder. 
 
-6) Copy application file from shell [src](./pipelines/shell/src) folder to the empty folder. 
+6) Copy application file from shell [src](./pipelines/shell/src) folder to your empty folder. 
 
 7) Push this code to your repository by running this commands in terminal: 
    
@@ -86,6 +90,40 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
     ```
 <img src="graphics/push_to_repo.gif" width="1000"/>
 
+## Install IE Publisher CLI on Jenkins server
+To install IE Publisher CLI, follow this instruction: 
+
+1) Go to the machine, where your Jenkins server is running. 
+
+2) Copy IE Publisher CLI installation [file](../../IE_Publisher_CLI/ie-app-publisher-linux) to your device. 
+
+3) Open up terminal in the folder where the istallation file is located and run this command 
+
+    ```bash
+    sudo cp ie-app-publisher-linux /usr/bin
+    ```
+
+5) To test whether your installation was succesfull run this command:
+
+    ```bash
+    sudo ie-app-publisher-linux --version
+    ```
+
+
+6) If you see the version publihser CLI version number, you have successfully installed IE Publisher CLI on your device. 
+
+
+
 ## Create Jenkins pipeline
+*Prerequisities:*
+
+*- Jenkins is installed and configured*
+
+*- Jenkins server is in the same subnet as IEM*
+
+
+
+
+
 
 ## Create GitHub webhook
