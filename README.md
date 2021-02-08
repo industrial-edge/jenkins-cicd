@@ -4,10 +4,17 @@ Automate process of uploading apps to IEM with Jenkins.
 
 
 
-- [Simulating virtual sensor with LiveTwin](#simulating-virtual-sensor-with-livetwin)
+- [CI/CD pipelines with Jenkins](#cicd-pipelines-with-jenkins)
   - [Description](#description)
     - [Overview](#overview)
     - [General task](#general-task)
+  - [Requirements](#requirements)
+    - [Prerequisities](#prerequisities)
+    - [Used components](#used-components)
+  - [Installation steps](#installation-steps)
+  - [Documentation](#documentation)
+  - [Contribution](#contribution)
+  - [Licence & Legal Information](#licence--legal-information)
 
 ## Description
 
