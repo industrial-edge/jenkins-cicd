@@ -5,7 +5,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
 - [Creating Jenkins pipelines using shell script](#creating-jenkins-pipelines-using-shell-script)
   - [Create project and application in IEM](#create-project-and-application-in-iem)
   - [Create GitHub repository](#create-github-repository)
-  - [Create Jenkins pipeline](#create-jenkins-pipeline)
+  - [Customize Jenkins](#customize-jenkins)
     - [Shell script - prerequisities](#shell-script---prerequisities)
       - [Install IE Publisher CLI on Jenkins server](#install-ie-publisher-cli-on-jenkins-server)
     - [Docker in Jenkins - prerequisities](#docker-in-jenkins---prerequisities)
@@ -13,6 +13,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
       - [Push docker image with CLI to docker registery.](#push-docker-image-with-cli-to-docker-registery)
       - [Create Jenkins credentials for Docker Hub](#create-jenkins-credentials-for-docker-hub)
     - [Create Jenkins environment variables](#create-jenkins-environment-variables)
+  - [Create Jenkins pipeline](#create-jenkins-pipeline)
   - [Create GitHub webhook](#create-github-webhook)
 
 
@@ -100,7 +101,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
 
 
 
-## Create Jenkins pipeline
+## Customize Jenkins 
 *Prerequisities:*
 
 *- Jenkins is installed and configured*
@@ -218,6 +219,28 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
 
 
 
+## Create Jenkins pipeline
+
+1) Go to "New Item" section in the Home Page. 
+
+2) Click on "Pipeline" and give your pipeline a name. 
+
+3) Click "OK". Configuration page opens. 
+
+4) In the "General" section, check the "GitHub project" checkbox and provide your GitHub project url. 
+
+5) In the "Build Triggers" check the "GitHub hook trigger for GITScm polling" option. 
+
+6) In "Pipeline" section choose "Pipeline script from SCM" from the Definition drop-down list. 
+
+7) For the "SCM" option, select "Git" and enter your repository url. 
+   *Note: Credentials is in this case not needed since the repository is public.*
+
+8) Select branch you want your pipeline build from. 
+
+9) Clik Apply & Save. Your Pipeline is succesfully created!
+
+<img src="graphics/create_pipeline.gif" width="1000"/>
 
 
 ## Create GitHub webhook
