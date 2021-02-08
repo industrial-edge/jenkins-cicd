@@ -17,7 +17,8 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
       - [Create Jenkins credentials for Docker Hub](#create-jenkins-credentials-for-docker-hub)
     - [Create Jenkins environment variables](#create-jenkins-environment-variables)
   - [Create Jenkins pipeline](#create-jenkins-pipeline)
-  - [Create GitHub webhook](#create-github-webhook)
+  - [Trigger Pipeline job](#trigger-pipeline-job)
+    - [1 Manuall trigger](#1-manuall-trigger)
 
 
 
@@ -278,4 +279,23 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
 <img src="graphics/create_pipeline.gif" width="1000"/>
 
 
-## Create GitHub webhook
+## Trigger Pipeline job 
+
+To trigger your pipeline job, you have two options. YOu can either trigger it manually or setup GitHub webhook to automatically trigger pipeline on every code push to your repository. 
+
+### 1 Manuall trigger 
+To manually trigger your pipeline, follow these steps: 
+
+1) go to your pipeline dashboard
+
+2) Click on "Build Now" option in the navigation bar. 
+
+3) You can monitor the pipeline results in "Console Output". 
+
+<img src="graphics/trigger_manual.gif" width="1000"/>
+
+
+
+
+
+
