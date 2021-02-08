@@ -76,7 +76,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
 
 5) Open VS code inside of an empty folder. 
 
-6) Copy application file from shell [src](./pipelines/shell/src) folder to your empty folder. 
+6) Copy application file from either shell or docker [src](./src) folder to your empty folder (use your prefered one). 
 
 7) Push this code to your repository by running this commands in terminal: 
    
