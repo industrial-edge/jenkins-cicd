@@ -12,6 +12,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
       - [Install Docker Pipeline plugin.](#install-docker-pipeline-plugin)
       - [Push docker image with CLI to docker registery.](#push-docker-image-with-cli-to-docker-registery)
       - [Create Jenkins credentials for Docker Hub](#create-jenkins-credentials-for-docker-hub)
+    - [Create Jenkins environment variables](#create-jenkins-environment-variables)
   - [Create GitHub webhook](#create-github-webhook)
 
 
@@ -183,6 +184,36 @@ To successfully pull images form your private docker container repository, you n
 
 
 <img src="graphics/create_credentials.gif" width="1000"/>
+
+### Create Jenkins environment variables
+To use envrironment variables in your Jenkins pipelines, follow these instructions: 
+
+1) Go to the "Manage Jenkins" otpion in Home Page. 
+
+2) Navigate to the "Configure System" tab and scroll down to the "Global properties" information. 
+
+3) Check in the "Environment variables" and click "Add". 
+
+4) Add following enviroment variables: 
+
+    ```txt
+    - Name: IEM_URL
+    - Value: <url-of-your-iem>
+    ```
+    ```txt
+    - Name: USER_NAME
+    - Value: <ieam-username>
+    ```
+    ```txt
+    - Name: PSWD
+    - Value: <iem-password>
+    ```
+    ```txt
+    - Name: APP_ID
+    - Value: <application-ID>
+    ```
+
+<img src="graphics/create_env.gif" width="1000"/>
 
 
 
