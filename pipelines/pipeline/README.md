@@ -5,8 +5,9 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
 - [Creating Jenkins pipelines using shell script](#creating-jenkins-pipelines-using-shell-script)
   - [Create project and application in IEM](#create-project-and-application-in-iem)
   - [Create GitHub repository](#create-github-repository)
-  - [Install IE Publisher CLI on Jenkins server](#install-ie-publisher-cli-on-jenkins-server)
   - [Create Jenkins pipeline](#create-jenkins-pipeline)
+    - [Shell script - prerequisities](#shell-script---prerequisities)
+      - [Install IE Publisher CLI on Jenkins server](#install-ie-publisher-cli-on-jenkins-server)
     - [Docker in Jenkins - prerequisities](#docker-in-jenkins---prerequisities)
       - [Install Docker Pipeline plugin.](#install-docker-pipeline-plugin)
       - [Push docker image with CLI to docker registery.](#push-docker-image-with-cli-to-docker-registery)
@@ -94,7 +95,24 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
     ```
 <img src="graphics/push_to_repo.gif" width="1000"/>
 
-## Install IE Publisher CLI on Jenkins server
+
+
+
+
+## Create Jenkins pipeline
+*Prerequisities:*
+
+*- Jenkins is installed and configured*
+
+*- Jenkins server is in the same subnet as IEM*
+
+*- For using docker in Jenkins - Docker image with CLI is pushed in Docker Hub* 
+
+Within this example, you have two options for creating Jenkins pipeline. You can either create simple shell script or more conveniently; use docker. In case you chose shell script, you need to install everything on your local Jenkins server manually. With docker you do not need to install anything. 
+
+### Shell script - prerequisities
+
+####  Install IE Publisher CLI on Jenkins server
 In case you want to use shell script for your pipelines, you have to install Publisher CLI on the Jenkins server. To install IE Publisher CLI, follow this instruction: 
 
 1) Go to the machine, where your Jenkins server is running. 
@@ -116,18 +134,6 @@ In case you want to use shell script for your pipelines, you have to install Pub
 
 6) If you see the publisher CLI version number, you have successfully installed IE Publisher CLI on your device. 
 
-
-
-## Create Jenkins pipeline
-*Prerequisities:*
-
-*- Jenkins is installed and configured*
-
-*- Jenkins server is in the same subnet as IEM*
-
-*- For using docker in Jenkins - Docker image with CLI is pushed in Docker Hub* 
-
-Within this example, you have two options for creating Jenkins pipeline. You can either create simple shell script or more conveniently; use docker. In case you chose shell script, you need to install everything on your local Jenkins server manually. With docker you do not need to install anything. 
 ### Docker in Jenkins - prerequisities
 
 In case you do not want to install everything on your local Jenkins server, docker in Jenkins pipeline is the best option for you. In order to use docker in Jenkins within this example, you need to install required Jenkins plugin and upload docker image that you want to use within the pipeline to docker hub or any other of yours favourite docker registery. 
