@@ -9,6 +9,9 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
     - [Shell script - prerequisities](#shell-script---prerequisities)
       - [Install IE Publisher CLI on Jenkins server](#install-ie-publisher-cli-on-jenkins-server)
     - [Docker in Jenkins - prerequisities](#docker-in-jenkins---prerequisities)
+      - [Customize docker](#customize-docker)
+        - [Post-installation step](#post-installation-step)
+        - [Enable Jenkins use your docker engine](#enable-jenkins-use-your-docker-engine)
       - [Install Docker Pipeline plugin.](#install-docker-pipeline-plugin)
       - [Push docker image with CLI to docker registery.](#push-docker-image-with-cli-to-docker-registery)
       - [Create Jenkins credentials for Docker Hub](#create-jenkins-credentials-for-docker-hub)
@@ -139,6 +142,37 @@ In case you want to use shell script for your pipelines, you have to install Pub
 ### Docker in Jenkins - prerequisities
 
 In case you do not want to install everything on your local Jenkins server, docker in Jenkins pipeline is the best option for you. In order to use docker in Jenkins within this example, you need to install required Jenkins plugin and upload docker image that you want to use within the pipeline to docker hub or any other of yours favourite docker registery. 
+
+#### Customize docker
+
+#####  Post-installation step
+
+Add user to the docker group to run without sudo command: 
+
+1) Create docker group
+   
+    ```bash
+    sudo groupadd docker
+    ```
+2) Add your user to the docker group
+
+    ```bash
+    sudo usermod -aG docker $USER
+    ```
+
+3) Activate the changes to groups
+
+    ```bash
+    newgrp docker 
+    ```
+
+#####  Enable Jenkins use your docker engine 
+To do this run this command on your terminal: 
+
+    ```bash
+    sudo usermod -a -G docker jenkins
+    sudo systemctl restart jenkins
+    ```
 
 
 #### Install Docker Pipeline plugin. 
