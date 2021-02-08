@@ -19,6 +19,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
   - [Create Jenkins pipeline](#create-jenkins-pipeline)
   - [Trigger Pipeline job](#trigger-pipeline-job)
     - [1 Manual trigger](#1-manual-trigger)
+    - [1 Automatic trigger](#1-automatic-trigger)
 
 
 
@@ -295,6 +296,50 @@ To manually trigger your pipeline, follow these steps:
 <img src="graphics/trigger_manual.gif" width="1000"/>
 
 
+
+### 1 Automatic trigger 
+
+GitHub by default privide a feature so called Webhooks. Webhooks allow external services to be notified when certain events happen. We can use this in our example to send notification from GitHub to Jenkins when the code is pushed to the repository and the pipeline will trigger automatically. 
+
+The problem is, that the Jenkins server has to be exposed to the public internet. We can do this in a secure way by using Webhook Relay. The documentation can be found [here](https://webhookrelay.com/). 
+
+An example on how to setup Webhook relay to connect GitHub with local Jenkins can be found [here](https://webhookrelay.com/blog/2017/11/23/github-jenkins-guide/). 
+
+To setub GitHub Webhook with Webhook relay, follow these steps: 
+
+
+1) Get The Webhook relay agent by running these commands 
+
+    ```bash
+    sudo wget -O /usr/local/bin/relay https://storage.googleapis.com/webhookrelay/downloads/relay-linux-amd64
+    sudo chmod +wx /usr/local/bin/relay
+    ```
+
+2) Go to the [https://my.webhookrelay.com/register](https://my.webhookrelay.com/register) and sign up by creating an account. 
+
+3) Go to [https://my.webhookrelay.com/tokens](https://my.webhookrelay.com/tokens) and click on "Generate Token". New token is generated. 
+
+4) Authenticate your Webhook relay for the Jenkins server 
+5) 
+    ```bash
+    relay login -k token-key-here -s token-secret-here
+    ```
+6) You will then need to start forwarding webhooks to Jenkins
+
+    ```bash
+    relay forward --bucket github-jenkins http://localhost:8080/github-webhook/
+    ```
+It will generate a url for your Webhook relay server that can be used to forward request inside GitHub Webhooks
+
+7) Go to your GitHub repository and navigate to "Settings" section. 
+
+8) Go to the "Webhooks" section and click on "Add webhook" button. 
+
+9) For The "Payload URL", provide the url from your Webhook Agent in this form: `https://<id>.hooks.webhookrelay.com`
+
+10) Select `application/json` for the "Content type"  and click "Add webhook". 
+
+10) Congratulations! You are ready to trigger your pipeline on every commitment to your repository but keep in mind that the first build has to be done manually. 
 
 
 
