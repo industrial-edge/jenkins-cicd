@@ -129,6 +129,9 @@ In case you want to use shell script for your pipelines, you have to install Pub
 
 3) Make sure the file is executable. 
 
+<img src="graphics/publisher_executable.PNG" />
+
+
 4) Open up terminal in the folder where the istallation file is located and run this command 
 
     ```bash
