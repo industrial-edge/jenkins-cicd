@@ -1,7 +1,7 @@
 node {
     checkout scm
     withEnv(['HOME=.']) {
-        stage ('Upload') {
+        stage ('Build') {
              docker.image('docker:18.09-dind').withRun(""" --privileged  """) { c ->
              docker.withRegistry( '','credentials-id') {    
              docker.image('halamap/publisher-cli:0.0.3').inside(""" --link ${c.id}:docker --privileged -u root """) {
@@ -12,6 +12,10 @@ node {
                     docker-compose --host tcp://docker:2375 build
                     docker --host tcp://docker:2375 images
                     cd ..
+                    """
+          stage ('Upload') {
+                 sh """
+              
                     cp -RT app /app/src/workspace
                     cd /app/src/workspace
                     ie-app-publisher-linux de c -u http://docker:2375
@@ -21,7 +25,7 @@ node {
                     ie-app-publisher-linux em app uuv -a $APP_ID -v 0.0.$BUILD_NUMBER
                 """
              }
-                 
+             }  
              }
                 
           }
