@@ -34,8 +34,8 @@ The main goal of this example is to show how to setup Jenkins server and create 
 - Installed Industrial Edge Management
 - Installed system configurators
 - Installed system applications
-- Development VM with docker installed
-- Developmennt VM has connection to IEM
+- VM (will be used for Jenkins) with docker and docker-compose installed
+- VM has connection to IEM
 
 
 ### Used components

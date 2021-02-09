@@ -136,7 +136,7 @@ In case you want to use shell script for your pipelines, you have to install Pub
 5) To test whether your installation was succesfull run this command:
 
     ```bash
-    sudo ie-app-publisher-linux --version
+    ie-app-publisher-linux --version
     ```
 
 
