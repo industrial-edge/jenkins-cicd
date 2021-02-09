@@ -1,6 +1,6 @@
 # Creating Jenkins pipelines using shell script
 
-Automate process of uploading apps to IEM with Jenkins using shell script. To demonstarte this approach, a simple nginx application is used. As a prerequisity for this task you need to have repository on GitHub, Jenkins installed and setup GitHub webhook to connect them. In order to complete this, follow instructions below. 
+Automate process of uploading apps to IEM with Jenkins using shell script or with docker container. To demonstarte this approach, a simple nginx application is used. As a prerequisity for this task you need to have repository on GitHub and Jenkins installed. In order to complete this, follow instructions below. 
 
 - [Creating Jenkins pipelines using shell script](#creating-jenkins-pipelines-using-shell-script)
   - [Create project and application in IEM](#create-project-and-application-in-iem)
@@ -26,7 +26,6 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
 
 ## Create project and application in IEM 
 *Prerequisities:*
-
 *- IEM isntalled and configured*
 
 1) Go to the "Applications" section of your Edge Management system. 

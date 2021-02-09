@@ -40,14 +40,15 @@ The main goal of this example is to show how to setup Jenkins server and create 
 
 ### Used components
 
-- Industrial Edge Device V 1.1.0-34
-- Industrial Edge Management system V 1.1.0-39-amd64
-- Ubuntu 20.04 development VM
-- Docker V 19.03.13
+- Industrial Edge Device V 1.1.0-39
+- Industrial Edge Management system V 1.1.11
+- Ubuntu 20.04 VM
+- Docker 19.03.13
+- Jenkins 2.263.3
 
 
 ## Installation steps
-The repository is devided into two main directories. The [Jenkins-installation](./Jenkins-installation) describes the process of setting up the Jenkins server in order to run CI/CD jobs. The documentation for the installation steps can be found [here](./Jenkins-installation/installation.md). 
+The repository is devided into two main directories. The Jenkins-installation describes the process of setting up the Jenkins server in order to run CI/CD jobs. The documentation for the installation steps can be found [here](./Jenkins-installation/installation.md). 
 
 The [pipeline](./pipeline) folder constist of Jenkins pipeline implementation using either shell script or docker. The documentation for each implementation describes the process of connecting GitHub repository with Jenkins using webhooks and creating Jenkins pipelines to automatically upload app to IEM on every push. 
 

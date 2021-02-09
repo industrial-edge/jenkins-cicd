@@ -13,7 +13,7 @@
 
 Further information about installing Jenkins on your device can be found [here](https://www.jenkins.io/doc/book/installing/)
 
-Jenkins is build on top of java so it typically runs as a standalone application in its own process with the built-in Java application or in a docker container. In this example, we will istall Jenkins server directly on the ubuntu development VM but remember that it is also possible to run Jenkins in docker container. 
+Jenkins is build on top of java so it typically runs as a standalone application in its own process with the built-in Java application or in a docker container. In this example, we will install Jenkins server directly on the ubuntu development VM but remember that it is also possible to run Jenkins in docker container. 
 
 ## Installation steps 
 
@@ -39,7 +39,7 @@ To install Jenkins on your linux device, follow these instructions:
     sudo apt-get install jenkins
     ```
 
-3) You can start aand check the Jenkins service with the command:
+3) You can start and check the Jenkins service with the command:
 
     ```bash
     sudo systemctl start jenkins
@@ -84,7 +84,7 @@ For this example, we will need to connect Jenkins with GitHub and therefore we n
 
 <img src="./graphics/customize_jenkins.PNG" width="500"/>
 
-2) Search for "GitHub plugin" in input form and check the GitHub plugin. 
+2) Search for "GitHub plugin" in input form and check the GitHub plugin checkbox. 
 
 
 <img src="./graphics/install_github.PNG" width="500"/>
