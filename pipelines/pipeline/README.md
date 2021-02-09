@@ -19,8 +19,8 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
     - [Create Jenkins environment variables](#create-jenkins-environment-variables)
   - [Create Jenkins pipeline](#create-jenkins-pipeline)
   - [Trigger Pipeline job](#trigger-pipeline-job)
-    - [1 Manual trigger](#1-manual-trigger)
-    - [1 Automatic trigger](#1-automatic-trigger)
+    - [Manual trigger](#manual-trigger)
+    - [Automatic trigger](#automatic-trigger)
 
 
 
@@ -116,7 +116,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
 
 *- For using docker in Jenkins - Docker image with CLI is pushed in Docker Hub* 
 
-Within this example, you have two options for creating Jenkins pipeline. You can either create simple shell script or more conveniently; use docker. In case you chose shell script, you need to install everything on your local Jenkins server manually. With docker you do not need to install anything. 
+Within this example, you have two options for creating Jenkins pipeline. You can either create simple shell script or more conveniently; use docker. In case you chose shell script, you need to install everything on your local Jenkins server manually. With docker you need to create docker image. 
 
 ### Shell script - prerequisities
 
@@ -143,6 +143,43 @@ In case you want to use shell script for your pipelines, you have to install Pub
 6) If you see the publisher CLI version number, you have successfully installed IE Publisher CLI on your device. 
 
 #### - Expose docker daemon 
+In order to run shell script for this example, you need to expose docker daemon TCP port 2375. To do that, follow these instructions: 
+
+1) Open terminal on the device where your Jenkins server is running. 
+
+2) Open the configuration file of the docker service:
+    ```bash
+    sudo nano /lib/systemd/system/docker.service
+    ```
+
+3) in the `[Service]` section, replace the line starting with `ExecStart= ` with the following line:
+
+    ```bash
+    ExecStart=/usr/bin/dockerd -H fd:// -H tcp://127.0.0.1:2375
+    ```
+     In this example the API will listen at `127.0.0.1:2375`. You can change the IP according to your setup, eg if you want to reach the docker engine from a external host, enter the external IP of the host.
+4) save the modified file
+5) reload the systemctl configuration:
+   
+    ```bash
+    sudo systemctl daemon-reload
+    ```
+
+6) restart the docker service:
+
+    ```bash
+    sudo systemctl restart docker.service
+    ```
+
+7) Check if the new configuration was applied:
+
+    ```bash
+    sudo docker info
+    ```
+     The output should state that the API is accessible on your IP and Port.
+
+__Warning__ : Access to the remote API is equivalent to root access on the host. Only do this in a trusted environment.
+
 
 ### Docker in Jenkins - prerequisities
 
@@ -287,7 +324,7 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
 
 To trigger your pipeline job, you have two options. YOu can either trigger it manually or setup GitHub webhook to automatically trigger pipeline on every code push to your repository. 
 
-### 1 Manual trigger 
+### Manual trigger 
 To manually trigger your pipeline, follow these steps: 
 
 1) go to your pipeline dashboard
@@ -300,7 +337,7 @@ To manually trigger your pipeline, follow these steps:
 
 
 
-### 1 Automatic trigger 
+### Automatic trigger 
 
 GitHub by default privide a feature so called Webhooks. Webhooks allow external services to be notified when certain events happen. We can use this in our example to send notification from GitHub to Jenkins when the code is pushed to the repository and the pipeline will trigger automatically. 
 
