@@ -25,8 +25,8 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 
 
 ## Create project and application in IEM 
-*Prerequisities:*
-*- IEM isntalled and configured*
+*Prerequisities:*\
+*- IEM installed and configured*
 
 1) Go to the "Applications" section of your Edge Management system. 
 
