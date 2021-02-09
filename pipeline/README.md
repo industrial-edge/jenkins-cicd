@@ -127,7 +127,9 @@ In case you want to use shell script for your pipelines, you have to install Pub
 
 2) Copy IE Publisher CLI installation [file](../../IE_Publisher_CLI/ie-app-publisher-linux) to your device. 
 
-3) Open up terminal in the folder where the istallation file is located and run this command 
+3) Make sure the file is executable. 
+
+4) Open up terminal in the folder where the istallation file is located and run this command 
 
     ```bash
     sudo cp ie-app-publisher-linux /usr/bin
