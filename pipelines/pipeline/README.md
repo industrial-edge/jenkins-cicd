@@ -7,14 +7,15 @@ Automate process of uploading apps to IEM with Jenkins using shell script. To de
   - [Create GitHub repository](#create-github-repository)
   - [Customize Jenkins](#customize-jenkins)
     - [Shell script - prerequisities](#shell-script---prerequisities)
-      - [Install IE Publisher CLI on Jenkins server](#install-ie-publisher-cli-on-jenkins-server)
+      - [- Install IE Publisher CLI on Jenkins server](#--install-ie-publisher-cli-on-jenkins-server)
+      - [- Expose docker daemon](#--expose-docker-daemon)
     - [Docker in Jenkins - prerequisities](#docker-in-jenkins---prerequisities)
-      - [Customize docker](#customize-docker)
+      - [- Customize docker](#--customize-docker)
         - [Post-installation step](#post-installation-step)
         - [Enable Jenkins use your docker engine](#enable-jenkins-use-your-docker-engine)
-      - [Install Docker Pipeline plugin.](#install-docker-pipeline-plugin)
-      - [Push docker image with CLI to docker registery.](#push-docker-image-with-cli-to-docker-registery)
-      - [Create Jenkins credentials for Docker Hub](#create-jenkins-credentials-for-docker-hub)
+      - [- Install Docker Pipeline plugin.](#--install-docker-pipeline-plugin)
+      - [- Push docker image with CLI to docker registery.](#--push-docker-image-with-cli-to-docker-registery)
+      - [- Create Jenkins credentials for Docker Hub](#--create-jenkins-credentials-for-docker-hub)
     - [Create Jenkins environment variables](#create-jenkins-environment-variables)
   - [Create Jenkins pipeline](#create-jenkins-pipeline)
   - [Trigger Pipeline job](#trigger-pipeline-job)
@@ -119,7 +120,7 @@ Within this example, you have two options for creating Jenkins pipeline. You can
 
 ### Shell script - prerequisities
 
-####  Install IE Publisher CLI on Jenkins server
+#### - Install IE Publisher CLI on Jenkins server
 In case you want to use shell script for your pipelines, you have to install Publisher CLI on the Jenkins server. To install IE Publisher CLI, follow this instruction: 
 
 1) Go to the machine, where your Jenkins server is running. 
@@ -141,11 +142,13 @@ In case you want to use shell script for your pipelines, you have to install Pub
 
 6) If you see the publisher CLI version number, you have successfully installed IE Publisher CLI on your device. 
 
+#### - Expose docker daemon 
+
 ### Docker in Jenkins - prerequisities
 
 In case you do not want to install everything on your local Jenkins server, docker in Jenkins pipeline is the best option for you. In order to use docker in Jenkins within this example, you need to install required Jenkins plugin and upload docker image that you want to use within the pipeline to docker hub or any other of yours favourite docker registery. 
 
-#### Customize docker
+#### - Customize docker
 
 #####  Post-installation step
 
@@ -177,7 +180,7 @@ To do this run this command on your terminal:
     ```
 
 
-#### Install Docker Pipeline plugin. 
+#### - Install Docker Pipeline plugin. 
 
 1) Go to "Manage Jenkins" section in Home Page. 
 
@@ -188,7 +191,7 @@ To do this run this command on your terminal:
 <img src="graphics/install_docker_plugin.gif" width="1000"/>
 
 
-#### Push docker image with CLI to docker registery. 
+#### - Push docker image with CLI to docker registery. 
 
 By default, Jenkins is pulling docker images from [https://hub.docker.com/](https://hub.docker.com/) to use them within your pipelines. You can also use any of your favourite docker container registery. 
 
@@ -202,7 +205,7 @@ By default, Jenkins is pulling docker images from [https://hub.docker.com/](http
     docker push <image>
     ```
 
-#### Create Jenkins credentials for Docker Hub 
+#### - Create Jenkins credentials for Docker Hub 
 To successfully pull images form your private docker container repository, you need to configure Jenkins credentials. 
 
 1) Go to "Manage Jenkins" section in Home Page. 
