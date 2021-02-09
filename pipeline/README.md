@@ -45,7 +45,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 <img src="graphics/create_project.gif" width="1000"/>
 
 
-5) Go to your created project and clisk on "Create application"
+5) Go to your created project and click on "Create application"
 
 6) Fill in the form for your application 
 
@@ -64,10 +64,8 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 
 
 ## Create GitHub repository 
-*Prerequisities:*
-
-*- GitHub account is created*
-
+*Prerequisities:*\
+*- GitHub account is created*\
 *- VS code is used for pushing code to remote GitHub repository*
 
 1) Go to [github](https://github.com/) and sign in with your credentials. 
@@ -80,17 +78,17 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
     - Repository name
     - Choose public repository
     ```
-*Note: Public repository is chosen to shorten the lenght of this documentation. You can also select private but be aware of setting up ssh key and Jenkins credentials for succesfull connection with GitHub. See: [jenkins with private github reposiotory](https://medium.com/@shreyaklexheal/integrate-jenkins-with-github-private-repo-8fb335494f7e)*
+*Note: Public repository is chosen to shorten the lenght of this documentation. You can also select private but be aware of setting up ssh key and Jenkins credentials for succesfull connection with GitHub. See: [jenkins-with-private-github-reposiotory](https://medium.com/@shreyaklexheal/integrate-jenkins-with-github-private-repo-8fb335494f7e)*
 
 <img src="graphics/create_repo.gif" width="1000"/>
 
-4) Clone this repository to your local development PC using `git clone <repositoryURL>` command. 
+4) Clone this repository to your local development device using `git clone <repositoryURL>` command. 
 
 5) Open VS code inside of an empty folder. 
 
-6) Copy application file from either shell or docker [src](./src) folder to your empty folder (use your prefered one). 
+6) Copy application file from either shell or docker (use your prefered one) [src](./src) folder to your empty folder. 
 
-7) Push this code to your repository by running this commands in terminal: 
+7) Push this code to your repository by running this commands in your terminal: 
    
     ```bash
     git init
@@ -107,12 +105,9 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 
 
 ## Customize Jenkins 
-*Prerequisities:*
-
-*- Jenkins is installed and configured*
-
-*- Jenkins server is in the same subnet as IEM*
-
+*Prerequisities:*\
+*- Jenkins is installed and configured*\
+*- Jenkins server is in the same subnet as IEM*\
 *- For using docker in Jenkins - Docker image with CLI is pushed in Docker Hub* 
 
 Within this example, you have two options for creating Jenkins pipeline. You can either create simple shell script or more conveniently; use docker. In case you chose shell script, you need to install everything on your local Jenkins server manually. With docker you need to create docker image. 
@@ -156,20 +151,20 @@ In order to run shell script for this example, you need to expose docker daemon 
     sudo nano /lib/systemd/system/docker.service
     ```
 
-3) in the `[Service]` section, replace the line starting with `ExecStart= ` with the following line:
+3) In the `[Service]` section, replace the line starting with `ExecStart= ` with the following line:
 
     ```bash
     ExecStart=/usr/bin/dockerd -H fd:// -H tcp://127.0.0.1:2375
     ```
      In this example the API will listen at `127.0.0.1:2375`. You can change the IP according to your setup, eg if you want to reach the docker engine from a external host, enter the external IP of the host.
-4) save the modified file
-5) reload the systemctl configuration:
+4) Save the modified file
+5) Reload the systemctl configuration:
    
     ```bash
     sudo systemctl daemon-reload
     ```
 
-6) restart the docker service:
+6) Restart the docker service:
 
     ```bash
     sudo systemctl restart docker.service
@@ -213,7 +208,7 @@ Add user to the docker group to run without sudo command:
     ```
 
 #####  Enable Jenkins use your docker engine 
-To do this run this command on your terminal: 
+To do this run these commands in your terminal: 
 
     ```bash
     sudo usermod -a -G docker jenkins
@@ -236,8 +231,8 @@ To do this run this command on your terminal:
 
 By default, Jenkins is pulling docker images from [https://hub.docker.com/](https://hub.docker.com/) to use them within your pipelines. You can also use any of your favourite docker container registery. 
 
-1) Create account and private repository on docker hub. 
-2) Push this [docker-image](./src/docker/dockerfile/Dockerfile) using these commands 
+1) Create account and private repository in docker hub. 
+2) Push this [docker-image](./src/docker/dockerfile/Dockerfile) to your repositroy using these commands 
 
 
     ```bash
@@ -269,7 +264,7 @@ To successfully pull images form your private docker container repository, you n
 ### Create Jenkins environment variables
 To use envrironment variables in your Jenkins pipelines, follow these instructions: 
 
-1) Go to the "Manage Jenkins" otpion in Home Page. 
+1) Go to the "Manage Jenkins" option on Home Page. 
 
 2) Navigate to the "Configure System" tab and scroll down to the "Global properties" information. 
 
@@ -314,7 +309,7 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
 
 6) In "Pipeline" section choose "Pipeline script from SCM" from the Definition drop-down list. 
 
-7) For the "SCM" option, select "Git" and enter your repository url. 
+7) For the "SCM" option, select "Git" and enter your repository url.\
    *Note: Credentials is in this case not needed since the repository is public.*
 
 8) Select branch you want your pipeline build from. 
@@ -326,12 +321,12 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
 
 ## Trigger Pipeline job 
 
-To trigger your pipeline job, you have two options. YOu can either trigger it manually or setup GitHub webhook to automatically trigger pipeline on every code push to your repository. 
+To trigger your pipeline job, you have two options. You can either trigger it manually or setup GitHub webhook to automatically trigger pipeline on every code push to your repository. 
 
 ### Manual trigger 
 To manually trigger your pipeline, follow these steps: 
 
-1) go to your pipeline dashboard
+1) Go to your pipeline dashboard
 
 2) Click on "Build Now" option in the navigation bar. 
 
@@ -343,7 +338,7 @@ To manually trigger your pipeline, follow these steps:
 
 ### Automatic trigger 
 
-GitHub by default privide a feature so called Webhooks. Webhooks allow external services to be notified when certain events happen. We can use this in our example to send notification from GitHub to Jenkins when the code is pushed to the repository and the pipeline will trigger automatically. 
+GitHub by default provide a feature so called Webhooks. Webhooks allow external services to be notified when certain events happen. We can use this in our example to send notification from GitHub to Jenkins when the code is pushed to the repository and the pipeline will trigger automatically. 
 
 The problem is, that the Jenkins server has to be exposed to the public internet. We can do this in a secure way by using Webhook Relay. The documentation can be found [here](https://webhookrelay.com/). 
 
@@ -364,24 +359,24 @@ To setub GitHub Webhook with Webhook relay, follow these steps:
 3) Go to [https://my.webhookrelay.com/tokens](https://my.webhookrelay.com/tokens) and click on "Generate Token". New token is generated. 
 
 4) Authenticate your Webhook relay for the Jenkins server 
-5) 
+
     ```bash
     relay login -k token-key-here -s token-secret-here
     ```
-6) You will then need to start forwarding webhooks to Jenkins
+5) You will then need to start forwarding webhooks to Jenkins
 
     ```bash
     relay forward --bucket github-jenkins http://localhost:8080/github-webhook/
     ```
 It will generate a url for your Webhook relay server that can be used to forward request inside GitHub Webhooks
 
-7) Go to your GitHub repository and navigate to "Settings" section. 
+6) Go to your GitHub repository and navigate to "Settings" section. 
 
-8) Go to the "Webhooks" section and click on "Add webhook" button. 
+7) Go to the "Webhooks" section and click on "Add webhook" button. 
 
-9) For The "Payload URL", provide the url from your Webhook Agent in this form: `https://<id>.hooks.webhookrelay.com`
+8) For The "Payload URL", provide the url from your Webhook Agent in this form: `https://<id>.hooks.webhookrelay.com`
 
-10) Select `application/json` for the "Content type"  and click "Add webhook". 
+9) Select `application/json` for the "Content type"  and click "Add webhook". 
 
 10) Congratulations! You are ready to trigger your pipeline on every commitment to your repository but keep in mind that the first build has to be done manually. 
 
