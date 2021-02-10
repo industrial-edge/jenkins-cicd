@@ -80,7 +80,7 @@ After unlocking, the Customize Jenkins page appears. Here you can install any nu
 
 For this example, we will need to connect Jenkins with GitHub and therefore we need to install GitHub plugin. 
 
-1) Click on "Install selected plugins". 
+1) Click on "Select plugins to install". 
 
 <img src="./graphics/customize_jenkins.PNG" width="500"/>
 

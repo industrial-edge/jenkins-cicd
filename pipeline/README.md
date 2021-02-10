@@ -1,8 +1,8 @@
-# Creating Jenkins pipelines using shell script
+# Jenkins pipelines 
 
-Automate process of uploading apps to IEM with Jenkins using shell script or with docker container. To demonstarte this approach, a simple nginx application is used. As a prerequisity for this task you need to have repository on GitHub and Jenkins installed. In order to complete this, follow instructions below. 
+Automate process of uploading apps to IEM with Jenkins using shell script or with docker container. To demonstrate this approach, a simple nginx application is used. As a prerequisity for this task, you need to have repository on GitHub and Jenkins installed. In order to reproduce this example, follow instructions below. 
 
-- [Creating Jenkins pipelines using shell script](#creating-jenkins-pipelines-using-shell-script)
+- [Jenkins pipelines](#jenkins-pipelines)
   - [Create project and application in IEM](#create-project-and-application-in-iem)
   - [Create GitHub repository](#create-github-repository)
   - [Customize Jenkins](#customize-jenkins)
@@ -78,7 +78,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
     - Repository name
     - Choose public repository
     ```
-*Note: Public repository is chosen to shorten the lenght of this documentation. You can also select private but be aware of setting up ssh key and Jenkins credentials for succesfull connection with GitHub. See: [jenkins-with-private-github-reposiotory](https://medium.com/@shreyaklexheal/integrate-jenkins-with-github-private-repo-8fb335494f7e)*
+*Note: Public repository is chosen to shorten the lenght of this documentation. You can also select private repository but be aware of setting up ssh key and Jenkins credentials for succesfull connection with GitHub. See: [jenkins-with-private-github-reposiotory](https://medium.com/@shreyaklexheal/integrate-jenkins-with-github-private-repo-8fb335494f7e)*
 
 <img src="graphics/create_repo.gif" width="1000"/>
 
@@ -91,6 +91,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 7) Push this code to your repository by running this commands in your terminal: 
    
     ```bash
+    cd <yourdirectory>
     git init
     git add --all
     git commit -m "first commit"
@@ -108,7 +109,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 *Prerequisities:*\
 *- Jenkins is installed and configured*\
 *- Jenkins server is in the same subnet as IEM*\
-*- For using docker in Jenkins - Docker image with CLI is pushed in Docker Hub* 
+
 
 Within this example, you have two options for creating Jenkins pipeline. You can either create simple shell script or more conveniently; use docker. In case you chose shell script, you need to install everything on your local Jenkins server manually. With docker you need to create docker image. 
 
