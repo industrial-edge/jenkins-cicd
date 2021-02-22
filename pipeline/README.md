@@ -20,7 +20,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
   - [Create Jenkins pipeline](#create-jenkins-pipeline)
   - [Trigger Pipeline job](#trigger-pipeline-job)
     - [Manual trigger](#manual-trigger)
-    - [Automatic trigger](#automatic-trigger)
+    - [Automatic trigger (optional)](#automatic-trigger-optional)
 
 
 
@@ -72,7 +72,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 
 2) Navigate to your profile and with "plus" button in the right upper corner select "New repository". 
 
-3) Give your repository required information 
+3) Give your repository the required information 
 
     ```txt
     - Repository name
@@ -81,12 +81,12 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 *Note: Public repository is chosen to shorten the lenght of this documentation. You can also select private repository but be aware of setting up ssh key and Jenkins credentials for succesfull connection with GitHub. See: [jenkins-with-private-github-reposiotory](https://medium.com/@shreyaklexheal/integrate-jenkins-with-github-private-repo-8fb335494f7e)*
 
 <img src="graphics/create_repo.gif" width="1000"/>
+//rewrite 4-7
+4) Clone this repository to your local development environment using `git clone <repositoryURL>` command. 
 
-4) Clone this repository to your local development device using `git clone <repositoryURL>` command. 
+5) Open the cloned repository using VS-Code. Folder should be empty.
 
-5) Open VS code inside of an empty folder. 
-
-6) Copy application file from either shell or docker (use your prefered one) [src](./src) folder to your empty folder. 
+6) Copy application file from either shell or docker (use your prefered one) [src](./src) folder to the empty folder. 
 
 7) Push this code to your repository by running this commands in your terminal: 
    
@@ -122,7 +122,7 @@ In case you want to use shell script for your pipelines, you have to install Pub
 
 2) Copy IE Publisher CLI installation [file](../../IE_Publisher_CLI/ie-app-publisher-linux) to your device. 
 
-3) Make sure the file is executable. 
+3) Make sure the file is executable.  sudo install ./ie-app-publisher-linux /usr/bin/
 
 <img src="graphics/publisher_executable.PNG" />
 
@@ -145,41 +145,36 @@ In case you want to use shell script for your pipelines, you have to install Pub
 #### - Expose docker daemon 
 In order to run shell script for this example, you need to expose docker daemon TCP port 2375. To do that, follow these instructions: 
 
-1) Open terminal on the device where your Jenkins server is running. 
+1. Open terminal on the device where your Jenkins server is running. 
+2. Use the command sudo systemctl edit docker.service to open an override file for docker.service in a text editor.
+```bash
+sudo systemctl edit docker.service
+```
 
-2) Open the configuration file of the docker service:
-    ```bash
-    sudo nano /lib/systemd/system/docker.service
-    ```
+3. Add or modify the following lines, substituting your own values.
+```bash
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://127.0.0.1:2375
+```
+In this example the API will listen at `127.0.0.1:2375`. You can change the IP according to your setup, eg if you want to reach the docker engine from a external host, enter the external IP of the host.
 
-3) In the `[Service]` section, replace the line starting with `ExecStart= ` with the following line:
-
-    ```bash
-    ExecStart=/usr/bin/dockerd -H fd:// -H tcp://127.0.0.1:2375
-    ```
-     In this example the API will listen at `127.0.0.1:2375`. You can change the IP according to your setup, eg if you want to reach the docker engine from a external host, enter the external IP of the host.
-4) Save the modified file
-5) Reload the systemctl configuration:
-   
-    ```bash
-    sudo systemctl daemon-reload
-    ```
-
-6) Restart the docker service:
-
-    ```bash
-    sudo systemctl restart docker.service
-    ```
-
-7) Check if the new configuration was applied:
-
-    ```bash
-    sudo docker info
-    ```
-     The output should state that the API is accessible on your IP and Port.
+4. Save the file.
+5. Reload the systemctl configuration.
+```bash
+sudo systemctl daemon-reload
+```
+6. Restart Docker
+```bash
+sudo systemctl restart docker.service
+```
+7. Check if the new configuration was applied:
+```bash
+sudo docker info
+```
+The output should state that the API is accessible on your IP and Port.
 
 __Warning__ : Access to the remote API is equivalent to root access on the host. Only do this in a trusted environment.
-
 
 ### Docker in Jenkins - prerequisities
 
@@ -211,10 +206,10 @@ Add user to the docker group to run without sudo command:
 #####  Enable Jenkins use your docker engine 
 To do this run these commands in your terminal: 
 
-    ```bash
-    sudo usermod -a -G docker jenkins
-    sudo systemctl restart jenkins
-    ```
+```bash
+sudo usermod -a -G docker jenkins
+sudo systemctl restart jenkins
+```
 
 
 #### - Install Docker Pipeline plugin. 
@@ -238,8 +233,8 @@ By default, Jenkins is pulling docker images from [https://hub.docker.com/](http
 
     ```bash
     docker login -u <dockerID> -p <password>
-    docker build -t <image> .
-    docker push <image>
+    docker build -t <dockerID>/<image> .
+    docker push <dockerID>/<image>
     ```
 
 #### - Create Jenkins credentials for Docker Hub 
@@ -321,7 +316,7 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
 
 8) Select branch you want your pipeline build from. 
 
-9) Clik Apply & Save. Your Pipeline is succesfully created!
+9) Click Apply & Save. Your Pipeline is succesfully created!
 
 <img src="graphics/create_pipeline.gif" width="1000"/>
 
@@ -343,7 +338,7 @@ To manually trigger your pipeline, follow these steps:
 
 
 
-### Automatic trigger 
+### Automatic trigger (optional)
 
 GitHub by default provide a feature so called Webhooks. Webhooks allow external services to be notified when certain events happen. We can use this in our example to send notification from GitHub to Jenkins when the code is pushed to the repository and the pipeline will trigger automatically. 
 
@@ -351,7 +346,7 @@ The problem is, that the Jenkins server has to be exposed to the public internet
 
 An example on how to setup Webhook relay to connect GitHub with local Jenkins can be found [here](https://webhookrelay.com/blog/2017/11/23/github-jenkins-guide/). 
 
-To setub GitHub Webhook with Webhook relay, follow these steps: 
+To setup GitHub Webhook with Webhook relay, follow these steps: 
 
 
 1) Get The Webhook relay agent by running these commands 

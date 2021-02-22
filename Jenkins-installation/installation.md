@@ -48,7 +48,7 @@ To install Jenkins on your linux device, follow these instructions:
 
 4) If everything has been set up correctly, you should see an output like this:
 
-    ```txt
+    ```bash
     Loaded: loaded (/etc/rc.d/init.d/jenkins; generated)
     Active: active (running) since Tue 2018-11-13 16:19:01 +03; 4min 57s ago
     ```
@@ -57,13 +57,13 @@ To install Jenkins on your linux device, follow these instructions:
 ## Post-Installation steps 
 
 ### Unlocking Jenkins 
-In order to start using Jenkins, you have to unlock it using initilized setup wizard. When you first access a new Jenkins instance, you are asked to unlock it using an automatically-generated password.
+In order to start using Jenkins, you have to unlock it using initialized setup wizard. When you first access a new Jenkins instance, you are asked to unlock it using an automatically-generated password.
 
-1) Go to [http://localhost:8080]() using your favourite browser and wait until Jenkins unlock page appears. 
+1) Go to [http://localhost:8080]() using your favorite browser and wait until Jenkins unlock page appears. 
 
 <img src="./graphics/unlock.PNG" width="500"/>
 
-2) To get administator password, run this command 
+2) To get administrator password, run this command 
 
     ```bash
     sudo cat /var/lib/jenkins/secrets/initialAdminPassword
@@ -76,7 +76,7 @@ And copy the output administrator password.
 
 ### Customize Jenkins 
 
-After unlocking, the Customize Jenkins page appears. Here you can install any number of usefull plugins as part of your initial setup. 
+After unlocking, the Customize Jenkins page appears. Here you can install any number of useful plugins as part of your initial setup. 
 
 For this example, we will need to connect Jenkins with GitHub and therefore we need to install GitHub plugin. 
 
@@ -93,9 +93,9 @@ For this example, we will need to connect Jenkins with GitHub and therefore we n
 
 ### Create user
 
-After succesfull installation a create new user form should appear. 
+After succesful installation a create new user form should appear. 
 
-1) Fill in the form in orded to create new user. 
+1) Fill in the form in order to create new user. 
 
 <img src="./graphics/create_usere.PNG" width="500"/>
 
