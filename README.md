@@ -22,7 +22,7 @@ This application example shows how to create Jenkins CI/CD pipelines to automati
 ### General task
 The main goal of this example is to show how to setup Jenkins server and create Jenkins pipelines to upload applications to IEM. Jenkins can be integrated with several Git providers but GitHub is used for this example. With GitHub webhook feature it is possible on every commit to the GitHub repository to automatically trigger Jenkins pipeline on a Jenkins server that build, test and upload application to IEM. 
 
-<img src="./graphics/overview.png" width="700"/>
+<img src="./docs/graphics/overview.png" width="700"/>
 
 ## Requirements
 
