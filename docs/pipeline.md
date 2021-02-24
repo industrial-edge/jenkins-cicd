@@ -276,7 +276,6 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
     - Name: IEM_URL
     - Value: <url-of-your-iem>
     ```
-*IEM_URL enviroment variable has to be this format: https://<iemIPadress>:9443*
     ```txt
     - Name: USER_NAME
     - Value: <ieam-username>
@@ -293,9 +292,9 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
     - Name: DOCKER_IMAGE_CLI
     - Value: <docker-image-cli>
     ```
-
-    
-*Note: App ID can be found in IEM under "My Projects -> Application Details -> Show Keys"*
+*Notes:*\
+*- IEM_URL enviroment variable has to be this format: https://<iemIPadress>:9443*\
+*- App ID can be found in IEM under "My Projects -> Application Details -> Show Keys"*
 
 <img src="graphics/create_env.gif" width="1000"/>
 

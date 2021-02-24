@@ -43,7 +43,7 @@ The main goal of this example is to show how to setup Jenkins server and create 
 
 
 ## Installation steps
-The repository is divided into two main directories. The [docs](./docs) folder contains documentation that describes the necessary steps for installation and implementation. The documentation for the installation steps of the Jenkins server can be found [here](./docs/installation.md). The documentation for creating Jenkins pipeline using either docker or shell script can be found [here](./docs/pipeline.md). It describes the process of connecting GitHub repository with Jenkins using webhooks and creating Jenkins pipelines to automatically upload app to IEM on every code changes push. The folder is extended by documentation describing implementation of the pipelines which can be found [here](./docs/pipeline.md)
+The repository is divided into two main directories. The [docs](./docs) folder contains documentation that describes the necessary steps for installation and implementation. The documentation for the installation steps of the Jenkins server can be found [here](./docs/installation.md). The documentation for creating Jenkins pipeline using either docker or shell script can be found [here](./docs/pipeline.md). It describes the process of connecting GitHub repository with Jenkins using webhooks and creating Jenkins pipelines to automatically upload app to IEM on every code changes push. The folder is extended by documentation describing implementation of the pipelines which can be found [here](./docs/implementation.md)
 
 
 The [src](./src) folder consist source code of Jenkins pipeline implementation using either shell script or docker. 
