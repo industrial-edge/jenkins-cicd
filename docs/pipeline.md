@@ -1,6 +1,6 @@
 # Jenkins pipelines 
 
-Automate process of uploading apps to IEM with Jenkins using shell script or with docker container. To demonstrate this approach, a simple nginx application is used. As a prerequisity for this task, you need to have repository on GitHub and Jenkins installed. In order to reproduce this example, follow instructions below. 
+Automate process of uploading apps to IEM with Jenkins using shell script or with docker container. To demonstrate this approach, a simple nginx application is used. As a prerequisite for this task, you need to have repository on GitHub and Jenkins installed. In order to reproduce this example, follow instructions below. 
 
 - [Jenkins pipelines](#jenkins-pipelines)
   - [Create project and application in IEM](#create-project-and-application-in-iem)
@@ -9,10 +9,10 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
     - [Shell script - prerequisities](#shell-script---prerequisities)
       - [- Install IE Publisher CLI on Jenkins server](#--install-ie-publisher-cli-on-jenkins-server)
       - [- Expose docker daemon](#--expose-docker-daemon)
-    - [Docker in Jenkins - prerequisities](#docker-in-jenkins---prerequisities)
       - [- Customize docker](#--customize-docker)
         - [Post-installation step](#post-installation-step)
         - [Enable Jenkins use your docker engine](#enable-jenkins-use-your-docker-engine)
+    - [Docker in Jenkins - prerequisities](#docker-in-jenkins---prerequisities)
       - [- Install Docker Pipeline plugin.](#--install-docker-pipeline-plugin)
       - [- Push docker image with CLI to docker registery.](#--push-docker-image-with-cli-to-docker-registery)
       - [- Create Jenkins credentials for Docker Hub](#--create-jenkins-credentials-for-docker-hub)
@@ -81,14 +81,13 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 *Note: Public repository is chosen to shorten the lenght of this documentation. You can also select private repository but be aware of setting up ssh key and Jenkins credentials for succesfull connection with GitHub. See: [jenkins-with-private-github-reposiotory](https://medium.com/@shreyaklexheal/integrate-jenkins-with-github-private-repo-8fb335494f7e)*
 
 <img src="graphics/create_repo.gif" width="1000"/>
-//rewrite 4-7
-4) Clone this repository to your local development environment using `git clone <repositoryURL>` command. 
 
-5) Open the cloned repository using VS-Code. Folder should be empty.
 
-6) Copy application file from either shell or docker (use your prefered one) [src](./src) folder to the empty folder. 
+4) Create empty folder inside of your device. 
 
-7) Push this code to your repository by running this commands in your terminal: 
+5) Copy application file from either shell or docker (use your prefered one) [src](./src) folder to the empty folder. 
+
+6) Push this code to your GitHub repository by running this commands in your terminal: 
    
     ```bash
     cd <yourdirectory>
@@ -108,10 +107,10 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 ## Customize Jenkins 
 *Prerequisities:*\
 *- Jenkins is installed and configured*\
-*- Jenkins server is in the same subnet as IEM*\
+*- Jenkins server is in the same subnet as IEM*
 
 
-Within this example, you have two options for creating Jenkins pipeline. You can either create simple shell script or more conveniently; use docker. In case you chose shell script, you need to install everything on your local Jenkins server manually. With docker you need to create docker image. 
+Within this example, you have two options for creating Jenkins pipeline. You can either create simple shell script or more conveniently; use docker. In case you choose shell script, you need to install everything on your local Jenkins server manually. With docker you need to create docker image. 
 
 ### Shell script - prerequisities
 
@@ -120,20 +119,20 @@ In case you want to use shell script for your pipelines, you have to install Pub
 
 1) Go to the machine, where your Jenkins server is running. 
 
-2) Copy IE Publisher CLI installation [file](../../IE_Publisher_CLI/ie-app-publisher-linux) to your device. 
+2) Download IE Publisher CLI executable file from [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/downloads) and copy the file to the Jenkins machine. 
 
 3) Make sure the file is executable.  sudo install ./ie-app-publisher-linux /usr/bin/
 
 <img src="graphics/publisher_executable.PNG" />
 
 
-4) Open up terminal in the folder where the istallation file is located and run this command 
+4) Open up terminal in the folder where the installation file is located and run this command 
 
     ```bash
     sudo cp ie-app-publisher-linux /usr/bin
     ```
 
-5) To test whether your installation was succesfull run this command:
+5) To test whether your installation was successful run this command:
 
     ```bash
     ie-app-publisher-linux --version
@@ -176,10 +175,6 @@ The output should state that the API is accessible on your IP and Port.
 
 __Warning__ : Access to the remote API is equivalent to root access on the host. Only do this in a trusted environment.
 
-### Docker in Jenkins - prerequisities
-
-In case you do not want to install everything on your local Jenkins server, docker in Jenkins pipeline is the best option for you. In order to use docker in Jenkins within this example, you need to install required Jenkins plugin and upload docker image that you want to use within the pipeline to docker hub or any other of yours favourite docker registery. 
-
 #### - Customize docker
 
 #####  Post-installation step
@@ -212,6 +207,12 @@ sudo systemctl restart jenkins
 ```
 
 
+### Docker in Jenkins - prerequisities
+
+In case you do not want to install everything on your local Jenkins server, docker in Jenkins pipeline is the best option for you. In order to use docker in Jenkins within this example, you need to install required Jenkins plugin and upload docker image that you want to use within the pipeline to docker hub or any other of yours favourite docker registery. 
+
+
+
 #### - Install Docker Pipeline plugin. 
 
 1) Go to "Manage Jenkins" section in Home Page. 
@@ -228,10 +229,13 @@ sudo systemctl restart jenkins
 By default, Jenkins is pulling docker images from [https://hub.docker.com/](https://hub.docker.com/) to use them within your pipelines. You can also use any of your favourite docker container registery. 
 
 1) Create account and private repository in docker hub. 
-2) Push this [docker-image](./src/docker/dockerfile/Dockerfile) to your repositroy using these commands 
+2) Copy [docker](../src/docker) folder from this repository to your device. 
+3) Download IE Publisher CLI executable file from [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/downloads) and copy the file to [dockerfile](../src/docker/dockerfile) folder.
+4) Push this [docker-image](./src/docker/dockerfile/Dockerfile) to your repositroy using these commands 
 
 
     ```bash
+    cd docker/dockerfile
     docker login -u <dockerID> -p <password>
     docker build -t <dockerID>/<image> .
     docker push <dockerID>/<image>
@@ -272,6 +276,7 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
     - Name: IEM_URL
     - Value: <url-of-your-iem>
     ```
+*IEM_URL enviroment variable has to be this format: https://<iemIPadress>:9443*
     ```txt
     - Name: USER_NAME
     - Value: <ieam-username>
