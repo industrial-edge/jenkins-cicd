@@ -1,0 +1,10 @@
+version: '2.4'
+services:
+  hello-edge:
+    image: hello-edge
+    mem_limit: 200mb
+    restart: always
+    volumes:
+      - './publish/:/publish/'
+      - './cfg-data/:/cfg-data/'
+
