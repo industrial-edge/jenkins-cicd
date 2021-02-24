@@ -29,7 +29,7 @@ The main goal of this example is to show how to setup Jenkins server and create 
 ###  Prerequisites
 
 - Installed Industrial Edge Management
-- VM (will be used for Jenkins) with docker and docker-compose installed
+- Linux VM (will be used for Jenkins) with docker and docker-compose installed
 - VM has connection to IEM
 
 

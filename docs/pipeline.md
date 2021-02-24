@@ -121,9 +121,11 @@ In case you want to use shell script for your pipelines, you have to install Pub
 
 2) Download IE Publisher CLI executable file from [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/downloads) and copy the file to the Jenkins machine. 
 
-3) Make sure the file is executable.  sudo install ./ie-app-publisher-linux /usr/bin/
+3) Make sure the file is executable.  
 
-<img src="graphics/publisher_executable.PNG" />
+    ```bash
+    sudo install ./ie-app-publisher-linux /usr/bin/
+    ```
 
 
 4) Open up terminal in the folder where the installation file is located and run this command 
