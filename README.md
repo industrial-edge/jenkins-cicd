@@ -17,10 +17,10 @@ Automate process of uploading apps to IEM with Jenkins.
 ## Description
 
 ###  Overview
-This application example shows how to create Jenkins CI/CD pipelines to automatically upload applications to Industrial Edge Management system.
+This application example shows how to create Jenkins CI/CD pipelines to automatically upload applications to the Industrial Edge Management.
 
 ### General task
-The main goal of this example is to show how to setup Jenkins server and create Jenkins pipelines to upload applications to IEM. Jenkins can be integrated with several Git providers but GitHub is used for this example. With GitHub webhook feature it is possible on every commit to the GitHub repository to automatically trigger Jenkins pipeline on a Jenkins server that build, test and upload application to IEM. 
+The main goal of this example is to show how to setup Jenkins server and create Jenkins pipelines to upload applications to IEM. Jenkins can be integrated with several Git providers but GitHub is used for this example. With GitHub webhook feature it is possible on every commit to the GitHub repository to automatically trigger Jenkins pipeline on a Jenkins server that build, test and upload applications to IEM. 
 
 <img src="./docs/graphics/overview.png" width="700"/>
 
@@ -29,7 +29,7 @@ The main goal of this example is to show how to setup Jenkins server and create 
 ###  Prerequisites
 
 - Installed Industrial Edge Management
-- VM (will be used for Jenkins) with docker and docker-compose installed
+- Linux VM(will be used for Jenkins) with docker and docker-compose installed
 - VM has connection to IEM
 
 
@@ -43,7 +43,10 @@ The main goal of this example is to show how to setup Jenkins server and create 
 
 
 ## Installation steps
-The repository is divided into two main directories. The [docs](./docs) folder contains documentation that describes the necessary steps for installation and implementation. The documentation for the installation steps of the Jenkins server can be found [here](./docs/installation.md). The documentation for creating Jenkins pipeline using either docker or shell script can be found [here](./docs/pipeline.md). It describes the process of connecting GitHub repository with Jenkins using webhooks and creating Jenkins pipelines to automatically upload app to IEM on every code changes push. The folder is extended by documentation describing implementation of the pipelines which can be found [here](./docs/implementation.md)
+The repository is divided into two main directories. The [docs](./docs) folder contains documentation that describes the necessary steps for installation and implementation. The documentation for the installation steps of the Jenkins server can be found [here](./docs/installation.md). The documentation for creating Jenkins pipeline using either docker or shell script can be found [here](./docs/pipeline.md). It describes the process of connecting GitHub repository with Jenkins using webhooks and creating Jenkins pipelines to automatically upload the app to a IEM, when code changes get pushed to the repository. The folder is extended by documentation describing implementation of the pipelines which can be found [here](./docs/implementation.md)
+
+- [Setting up Jenkins Server](./docs/installation.md)
+- [Setting up CI/CD Pipeline](./docs/pipeline.md)
 
 
 The [src](./src) folder consist source code of Jenkins pipeline implementation using either shell script or docker. 

@@ -54,7 +54,7 @@ After that, the connection to a local running docker engine is established using
 ```txt
                         ie-app-publisher-linux de c -u http://localhost:2375
 ```
-The last part of the upload stage is logging into IEM using credentials stored as Jenkins enviroment variables, creates application version with reverse proxy configuration and uploads to the IEM repository. 
+The last part of the upload stage is logging into IEM using credentials stored as Jenkins environment variables, creates application version with reverse proxy configuration and uploads to the IEM repository. 
 
 ```txt
 // login to IEM

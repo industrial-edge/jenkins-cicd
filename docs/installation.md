@@ -11,7 +11,7 @@
 
 ## Installing Jenkins 
 
-Further information about installing Jenkins on your device can be found [here](https://www.jenkins.io/doc/book/installing/)
+Further information about installing Jenkins on your environment can be found [here](https://www.jenkins.io/doc/book/installing/)
 
 Jenkins is build on top of java so it typically runs as a standalone application in its own process with the built-in Java application or in a docker container. In this example, we will install Jenkins server directly on the ubuntu development VM but remember that it is also possible to run Jenkins in docker container. 
 
@@ -20,7 +20,7 @@ Jenkins is build on top of java so it typically runs as a standalone application
 *Note:*
 *Ubuntu 20.04 is used for running Jenkins server*
 
-To install Jenkins on your linux device, follow these instructions:  
+To install Jenkins in your linux environment, follow these instructions:  
 
 1) Jenkins is build using Java and therefore we need to have Java installed. To do that go to your terminal and run this commands
 
@@ -39,7 +39,7 @@ To install Jenkins on your linux device, follow these instructions:
     sudo apt-get install jenkins
     ```
 
-3) You can start and check the Jenkins service with the command:
+3) You can start and check the Jenkins service with the following commands:
 
     ```bash
     sudo systemctl start jenkins
@@ -93,7 +93,7 @@ For this example, we will need to connect Jenkins with GitHub and therefore we n
 
 ### Create user
 
-After succesful installation a create new user form should appear. 
+After successful installation a "create new user" form should appear. 
 
 1) Fill in the form in order to create new user. 
 

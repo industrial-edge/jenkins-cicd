@@ -6,17 +6,17 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
   - [Create project and application in IEM](#create-project-and-application-in-iem)
   - [Create GitHub repository](#create-github-repository)
   - [Customize Jenkins](#customize-jenkins)
-    - [Shell script - prerequisities](#shell-script---prerequisities)
+    - [Shell script (Option A) - prerequisites](#shell-script-option-a---prerequisites)
       - [- Install IE Publisher CLI on Jenkins server](#--install-ie-publisher-cli-on-jenkins-server)
       - [- Expose docker daemon](#--expose-docker-daemon)
       - [- Customize docker](#--customize-docker)
         - [Post-installation step](#post-installation-step)
         - [Enable Jenkins use your docker engine](#enable-jenkins-use-your-docker-engine)
-    - [Docker in Jenkins - prerequisities](#docker-in-jenkins---prerequisities)
+    - [Docker in Jenkins (Option B) - prerequisites](#docker-in-jenkins-option-b---prerequisites)
       - [- Install Docker Pipeline plugin.](#--install-docker-pipeline-plugin)
-      - [- Push docker image with CLI to docker registery.](#--push-docker-image-with-cli-to-docker-registery)
+      - [- Push docker image with CLI to docker registry.](#--push-docker-image-with-cli-to-docker-registry)
       - [- Create Jenkins credentials for Docker Hub](#--create-jenkins-credentials-for-docker-hub)
-    - [Create Jenkins environment variables](#create-jenkins-environment-variables)
+    - [Create Jenkins environment variables (Option A and B)](#create-jenkins-environment-variables-option-a-and-b)
   - [Create Jenkins pipeline](#create-jenkins-pipeline)
   - [Trigger Pipeline job](#trigger-pipeline-job)
     - [Manual trigger](#manual-trigger)
@@ -25,10 +25,10 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 
 
 ## Create project and application in IEM 
-*Prerequisities:*\
+*Prerequisites:*\
 *- IEM installed and configured*
 
-1) Go to the "Applications" section of your Edge Management system. 
+1) Go to the "Applications" section of your Edge Management. 
 
 2) Click on "Create Project" button in the right upper corner. 
 
@@ -49,22 +49,21 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 
 6) Fill in the form for your application 
 
-
     ```txt
     - Application Name 
     - Repository Name
     - Website
-    - Sescription
+    - Description
     - Select icon
     ```
 
-7) Click on "Create" button. Your application is succesfully created.
+7) Click on "Create" button. Your application is successfully created.
 
 <img src="graphics/create_app.gif" width="1000"/>
 
 
 ## Create GitHub repository 
-*Prerequisities:*\
+*Prerequisites:*\
 *- GitHub account is created*\
 *- VS code is used for pushing code to remote GitHub repository*
 
@@ -78,16 +77,16 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
     - Repository name
     - Choose public repository
     ```
-*Note: Public repository is chosen to shorten the lenght of this documentation. You can also select private repository but be aware of setting up ssh key and Jenkins credentials for succesfull connection with GitHub. See: [jenkins-with-private-github-reposiotory](https://medium.com/@shreyaklexheal/integrate-jenkins-with-github-private-repo-8fb335494f7e)*
+*Note: Public repository is chosen to shorten the length of this documentation. You can also select private repository but be aware of setting up ssh key and Jenkins credentials for successful connection with GitHub. See: [jenkins-with-private-github-repository](https://medium.com/@shreyaklexheal/integrate-jenkins-with-github-private-repo-8fb335494f7e)*
 
 <img src="graphics/create_repo.gif" width="1000"/>
 
 
-4) Create empty folder inside of your device. 
+4) Create an empty folder inside of your environment (VM). 
 
-5) Copy application file from either shell or docker (use your prefered one) [src](./src) folder to the empty folder. 
+5) Copy application folder for either shell or docker (use your preferred one) [src](./src) to the empty folder. 
 
-6) Push this code to your GitHub repository by running this commands in your terminal: 
+6) Push this code to your GitHub repository by running these commands in your terminal: 
    
     ```bash
     cd <yourdirectory>
@@ -101,45 +100,30 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 <img src="graphics/push_to_repo.gif" width="1000"/>
 
 
-
-
-
 ## Customize Jenkins 
-*Prerequisities:*\
+*Prerequisites:*\
 *- Jenkins is installed and configured*\
 *- Jenkins server is in the same subnet as IEM*
 
 
-Within this example, you have two options for creating Jenkins pipeline. You can either create simple shell script or more conveniently; use docker. In case you choose shell script, you need to install everything on your local Jenkins server manually. With docker you need to create docker image. 
+Within this example, you have two options for creating Jenkins pipeline. You can either create simple shell script or more conveniently use docker. In case you choose shell script, you need to install everything on your local Jenkins server manually. With docker you need to create a docker image. 
 
-### Shell script - prerequisities
+### Shell script (Option A) - prerequisites
 
 #### - Install IE Publisher CLI on Jenkins server
-In case you want to use shell script for your pipelines, you have to install Publisher CLI on the Jenkins server. To install IE Publisher CLI, follow this instruction: 
+In case you want to use shell script for your pipelines, you have to install Publisher CLI in the operating system where you setup the Jenkins server. To install the IE Publisher CLI, follow these instructions: 
 
 1) Go to the machine, where your Jenkins server is running. 
 
-2) Download IE Publisher CLI executable file from [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/downloads) and copy the file to the Jenkins machine. 
+2) Download the IE Publisher CLI executable file from [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/downloads) and copy the file to the Jenkins machine. 
 
-3) Make sure the file is executable.  sudo install ./ie-app-publisher-linux /usr/bin/
-
-<img src="graphics/publisher_executable.PNG" />
-
-
-4) Open up terminal in the folder where the installation file is located and run this command 
+3) Open terminal in the directory with the IE Publisher CLI and run to make the IE Publisher CLI executable.  
 
     ```bash
-    sudo cp ie-app-publisher-linux /usr/bin
+    sudo install ./ie-app-publisher-linux /usr/bin/
     ```
 
-5) To test whether your installation was successful run this command:
-
-    ```bash
-    ie-app-publisher-linux --version
-    ```
-
-
-6) If you see the publisher CLI version number, you have successfully installed IE Publisher CLI on your device. 
+4) If you see the publisher CLI version number, you have successfully installed IE Publisher CLI on your device. 
 
 #### - Expose docker daemon 
 In order to run shell script for this example, you need to expose docker daemon TCP port 2375. To do that, follow these instructions: 
@@ -207,9 +191,9 @@ sudo systemctl restart jenkins
 ```
 
 
-### Docker in Jenkins - prerequisities
+### Docker in Jenkins (Option B) - prerequisites
 
-In case you do not want to install everything on your local Jenkins server, docker in Jenkins pipeline is the best option for you. In order to use docker in Jenkins within this example, you need to install required Jenkins plugin and upload docker image that you want to use within the pipeline to docker hub or any other of yours favourite docker registery. 
+In case you do not want to install everything on your local Jenkins server, docker in Jenkins pipeline is the best option for you. In order to use docker in Jenkins within this example, you need to install required Jenkins plugin and upload docker image that you want to use within the pipeline to docker hub or any other of yours favorite docker registry. 
 
 
 
@@ -224,14 +208,14 @@ In case you do not want to install everything on your local Jenkins server, dock
 <img src="graphics/install_docker_plugin.gif" width="1000"/>
 
 
-#### - Push docker image with CLI to docker registery. 
+#### - Push docker image with CLI to docker registry. 
 
-By default, Jenkins is pulling docker images from [https://hub.docker.com/](https://hub.docker.com/) to use them within your pipelines. You can also use any of your favourite docker container registery. 
+By default, Jenkins is pulling docker images from [https://hub.docker.com/](https://hub.docker.com/) to use them within your pipelines. You can also use any of your favorite docker container registry. 
 
 1) Create account and private repository in docker hub. 
 2) Copy [docker](../src/docker) folder from this repository to your device. 
 3) Download IE Publisher CLI executable file from [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/downloads) and copy the file to [dockerfile](../src/docker/dockerfile) folder.
-4) Push this [docker-image](./src/docker/dockerfile/Dockerfile) to your repositroy using these commands 
+4) Push this [docker-image](./src/docker/dockerfile/Dockerfile) to your repository using these commands 
 
 
     ```bash
@@ -242,7 +226,7 @@ By default, Jenkins is pulling docker images from [https://hub.docker.com/](http
     ```
 
 #### - Create Jenkins credentials for Docker Hub 
-To successfully pull images form your private docker container repository, you need to configure Jenkins credentials. 
+To successfully pull images form your private docker container registry, you need to configure Jenkins credentials. 
 
 1) Go to "Manage Jenkins" section in Home Page. 
 
@@ -250,19 +234,19 @@ To successfully pull images form your private docker container repository, you n
 
 3) Click on "Add Credentials" and fill in the form with following information: 
 
-
     ```txt
     - Username: <dockerID>
     - Password: <password>
     - ID: 'credentials-id'
     ```
+
 4) Click "OK". Your credentials for Docker Hub has been created. 
 
 
 <img src="graphics/create_credentials.gif" width="1000"/>
 
-### Create Jenkins environment variables
-To use envrironment variables in your Jenkins pipelines, follow these instructions: 
+### Create Jenkins environment variables (Option A and B)
+To use environment variables in your Jenkins pipelines, follow these instructions: 
 
 1) Go to the "Manage Jenkins" option on Home Page. 
 
@@ -270,7 +254,7 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
 
 3) Check in the "Environment variables" and click "Add". 
 
-4) Add following enviroment variables: 
+4) Add following environment variables: 
 
     ```txt
     - Name: IEM_URL
@@ -288,18 +272,16 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
     - Name: APP_ID
     - Value: <application-ID>
     ```
+    Only necessary for Docker in Jenkins (Option B)
     ```txt
     - Name: DOCKER_IMAGE_CLI
     - Value: <docker-image-cli>
     ```
 *Notes:*\
-*- IEM_URL enviroment variable has to be this format: https://iemip:9443* \
+*- IEM_URL environment variable has to be this format: https://iemip:9443* \
 *- App ID can be found in IEM under "My Projects -> Application Details -> Show Keys"*
 
 <img src="graphics/create_env.gif" width="1000"/>
-
-
-
 
 ## Create Jenkins pipeline
 
@@ -320,7 +302,7 @@ To use envrironment variables in your Jenkins pipelines, follow these instructio
 
 8) Select branch you want your pipeline build from. 
 
-9) Click Apply & Save. Your Pipeline is succesfully created!
+9) Click Apply & Save. Your Pipeline is successfully created!
 
 <img src="graphics/create_pipeline.gif" width="1000"/>
 
