@@ -36,7 +36,7 @@ The main goal of this example is to show how to setup Jenkins server and create 
 ### Used components
 
 - Industrial Edge Device V 1.1.0-39
-- Industrial Edge Management V 1.1.11
+- Industrial Edge Management V 1.1.16
 - VM - Ubuntu 20.04
 - Docker 19.03.13
 - Jenkins 2.263.3
