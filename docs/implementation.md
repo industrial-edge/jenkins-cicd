@@ -31,7 +31,7 @@ The build stage is building docker images defined inside of the docker-compose f
 ```
 
 ### Upload stage
-The upload stage is responsible to perform different jobs. At first, it creates, initialize and copy application files to a workspace folder, which is used by the IE Publisher as a working directory. 
+The upload stage is responsible to perform different jobs. At first, it creates, initialize and copy application files to a workspace folder, which is used by the IECTL  as a working directory. 
 
 ```txt
             stage('Upload') {
@@ -42,7 +42,7 @@ The upload stage is responsible to perform different jobs. At first, it creates,
                         rm -rf workspace
                         mkdir workspace
                         cd workspace
-                        ie-app-publisher-linux ws init
+                        iectl publisher workspace init
                         cd ..
                         cp -RT app ./workspace
                         cd workspace
@@ -52,7 +52,7 @@ The upload stage is responsible to perform different jobs. At first, it creates,
 After that, the connection to a local running docker engine is established using IE Publisher CLI command.
 
 ```txt
-                        ie-app-publisher-linux de c -u http://localhost:2375
+                        iectl publisher docker-engine v -u http://localhost:2375
 ```
 The last part of the upload stage is logging into IEM using credentials stored as Jenkins environment variables, creates application version with reverse proxy configuration and uploads to the IEM repository. 
 

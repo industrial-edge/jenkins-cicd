@@ -111,50 +111,62 @@ Within this example, you have two options for creating Jenkins pipeline. You can
 ### Shell script (Option A) - prerequisites
 
 #### - Install IE Publisher CLI on Jenkins server
-In case you want to use shell script for your pipelines, you have to install Publisher CLI in the operating system where you setup the Jenkins server. To install the IE Publisher CLI, follow these instructions: 
+In case you want to use shell script for your pipelines, you have to install IECTL in the operating system where you setup the Jenkins server. To install the IECTL, follow these instructions: 
 
 1) Go to the machine, where your Jenkins server is running. 
 
-2) Download the IE Publisher CLI executable file from [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/downloads) and copy the file to the Jenkins machine. 
+2) Download the IECTL zip file from [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/downloads) and copy the file to the Jenkins machine. 
 
-3) Open terminal in the directory with the IE Publisher CLI and run to make the IE Publisher CLI executable.  
+3) Open terminal in the directory with the IECTL zip file, extract it and run these commands to install it.  
 
     ```bash
-    sudo install ./ie-app-publisher-linux /usr/bin/
+    chmod +x iectl
+    sudo mv iectl /usr/local/bin/
+    ```
+   If you don't have root access on the system, you can use:
+
+    ```bash
+    chmod +x iectl
+    mkdir -p ~/.local/bin
+    mv ./iectl ~/.local/bin/ietcl
     ```
 
-4) If you see the publisher CLI version number, you have successfully installed IE Publisher CLI on your device. 
+4) Verify the installation using:
+
+    ```bash
+    iectl version
+    ``` 
 
 #### - Expose docker daemon 
 In order to run shell script for this example, you need to expose docker daemon TCP port 2375. To do that, follow these instructions: 
 
 1. Open terminal on the device where your Jenkins server is running. 
 2. Use the command sudo systemctl edit docker.service to open an override file for docker.service in a text editor.
-```bash
-sudo systemctl edit docker.service
-```
+    ```bash
+    sudo systemctl edit docker.service
+    ```
 
 3. Add or modify the following lines, substituting your own values.
-```bash
-[Service]
-ExecStart=
-ExecStart=/usr/bin/dockerd -H fd:// -H tcp://127.0.0.1:2375
-```
+    ```bash
+    [Service]
+    ExecStart=
+    ExecStart=/usr/bin/dockerd -H fd:// -H tcp://127.0.0.1:2375
+    ```
 In this example the API will listen at `127.0.0.1:2375`. You can change the IP according to your setup, eg if you want to reach the docker engine from a external host, enter the external IP of the host.
 
 4. Save the file.
 5. Reload the systemctl configuration.
-```bash
-sudo systemctl daemon-reload
-```
+    ```bash
+    sudo systemctl daemon-reload
+    ```
 6. Restart Docker
-```bash
-sudo systemctl restart docker.service
-```
+    ```bash
+    sudo systemctl restart docker.service
+    ```
 7. Check if the new configuration was applied:
-```bash
-sudo docker info
-```
+    ```bash
+    sudo docker info
+    ```
 The output should state that the API is accessible on your IP and Port.
 
 __Warning__ : Access to the remote API is equivalent to root access on the host. Only do this in a trusted environment.
@@ -214,7 +226,7 @@ By default, Jenkins is pulling docker images from [https://hub.docker.com/](http
 
 1) Create account and private repository in docker hub. 
 2) Copy [docker](../src/docker) folder from this repository to your device. 
-3) Download IE Publisher CLI executable file from [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/downloads) and copy the file to [dockerfile](../src/docker/dockerfile) folder.
+3) Download IECTL file from [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/downloads), unzip and copy that file to [dockerfile](../src/docker/dockerfile) folder.
 4) Push this [docker-image](./src/docker/dockerfile/Dockerfile) to your repository using these commands 
 
 
