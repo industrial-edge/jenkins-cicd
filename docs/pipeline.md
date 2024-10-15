@@ -284,6 +284,19 @@ To use environment variables in your Jenkins pipelines, follow these instruction
     - Name: APP_ID
     - Value: <application-ID>
     ```
+    ```txt
+    - Name: REPO_NAME
+    - Value: <app-repo-name>
+    ```
+    ```txt
+    - Name: ICON_PATH
+    - Value: <absolute-path-to-the-icon>
+    ```
+    ```txt
+    - Name: APP_NAME
+    - Value: <App-name>
+    ```
+
     Only necessary for Docker in Jenkins (Option B)
     ```txt
     - Name: DOCKER_IMAGE_CLI

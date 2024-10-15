@@ -16,11 +16,27 @@ node {
                         sh """
                             cp -RT app /app/src/workspace
                             cd /app/src/workspace
-                            ie-app-publisher-linux de c -u http://docker:2375
+
                             export IE_SKIP_CERTIFICATE=true
-                            ie-app-publisher-linux em li -u "$IEM_URL" -e $USER_NAME -p $PSWD
-                            ie-app-publisher-linux em app cuv -a $APP_ID -v 0.0.$BUILD_NUMBER -y ./docker-compose.prod.yml -n '{"hello-edge":[{"name":"hello-edge","protocol":"HTTP","port":"80","headers":"","rewriteTarget":"/"}]}' -s 'hello-edge' -t 'FromBoxReverseProxy' -u "hello-edge" -r "/"
-                            ie-app-publisher-linux em app uuv -a $APP_ID -v 0.0.$BUILD_NUMBER
+                            export EDGE_SKIP_TLS=1
+
+                            iectl config add publisher --name "publisherdev" --dockerurl "http://127.0.0.1:2375" --workspace "/app/src/workspace"
+                            iectl publisher workspace init
+                            iectl publisher docker-engine v -u http://localhost:2375
+                            
+                            iectl config add iem --name "iemdev" --url $IEM_URL --user $USER_NAME --password $PSWD
+
+                            iectl publisher standalone-app create --reponame $REPO_NAME --appdescription "uploaded using Jenkins" --iconpath $ICON_PATH --appname $APP_NAME
+
+                            version=$(iectl publisher standalone-app version list -a $APP_NAME -k "versionNumber" | python3 ../getAppVersion.py)
+
+                            version_new=$(echo $version | awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{if(length($NF+1)>length($NF))$(NF-1)++; $NF=sprintf("%0*d", length($NF), ($NF+1)%(10^length($NF))); print}')
+                            echo 'new Version: '$version_new
+
+                            iectl publisher standalone-app version create --appname $APP_NAME --changelogs "new release" --yamlpath "./docker-compose.prod.yml" --versionnumber $version_new 
+-n '{"hello-edge":[{"name":"hello-edge","protocol":"HTTP","port":"80","headers":"","rewriteTarget":"/"}]}' -s 'hello-edge' -t 'FromBoxReverseProxy' -u "hello-edge" -r "/"
+
+                            iectl publisher app-project upload catalog --appname $APP_NAME -v $version_new
                         """
                     }  
                 }        

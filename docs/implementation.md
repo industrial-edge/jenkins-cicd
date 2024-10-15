@@ -49,7 +49,7 @@ The upload stage is responsible to perform different jobs. At first, it creates,
 
 ```
 
-After that, the connection to a local running docker engine is established using IE Publisher CLI command.
+After that, the connection to a local running docker engine is established using IECTL command.
 
 ```txt
                         iectl publisher docker-engine v -u http://localhost:2375
@@ -59,6 +59,9 @@ The last part of the upload stage is logging into IEM using credentials stored a
 ```txt
 // login to IEM
                         export IE_SKIP_CERTIFICATE=true
+                        export EDGE_SKIP_TLS=1
+                        iectl config add publisher                     
+
                         ie-app-publisher-linux em li -u "$IEM_URL" -e $USER_NAME -p $PSWD
 // creating app version                       
                         ie-app-publisher-linux em app cuv -a $APP_ID -v 0.0.$BUILD_NUMBER -y ./docker-compose.prod.yml -n '{"hello-edge":[{"name":"hello-edge","protocol":"HTTP","port":"80","headers":"","rewriteTarget":"/"}]}' -s 'hello-edge' -t 'FromBoxReverseProxy' -u "hello-edge" -r "/"
