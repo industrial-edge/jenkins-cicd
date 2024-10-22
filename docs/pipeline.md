@@ -232,8 +232,9 @@ By default, Jenkins is pulling docker images from [https://hub.docker.com/](http
 
     ```bash
     cd docker/dockerfile
+    chmod +x iectl
     docker login -u <dockerID> -p <password>
-    docker build -t <dockerID>/<image> .
+    docker build -t <dockerID>/<repo_image> .
     docker push <dockerID>/<image>
     ```
 
@@ -279,10 +280,6 @@ To use environment variables in your Jenkins pipelines, follow these instruction
     ```txt
     - Name: PSWD
     - Value: <iem-password>
-    ```
-    ```txt
-    - Name: APP_ID
-    - Value: <application-ID>
     ```
     ```txt
     - Name: REPO_NAME
