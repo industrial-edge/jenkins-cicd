@@ -28,7 +28,7 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 *Prerequisites:*\
 *- IEM installed and configured*
 
-1) Go to the "Applications" section of your Edge Management. 
+1) Go to the "App-Projects" section of your Edge Management. 
 
 2) Click on "Create Project" button in the right upper corner. 
 
@@ -81,24 +81,23 @@ Automate process of uploading apps to IEM with Jenkins using shell script or wit
 
 <img src="graphics/create_repo.gif" width="1000"/>
 
+4) You can clone the empty repository to your local system in the location of your choice:
 
-4) Create an empty folder inside of your environment (VM). 
+    ```sh
+    git clone https://github.com/<username>/<reponame>.git
+    cd <reponame>
+    ```
 
 5) Copy application folder for either shell or docker (use your preferred one) [src](./src) to the empty folder. 
 
 6) Push this code to your GitHub repository by running these commands in your terminal: 
    
     ```bash
-    cd <yourdirectory>
-    git init
-    git add --all
+    git add *
     git commit -m "first commit"
-    git branch -M main
-    git remote add origin https://github.com/<yourrepositoryname>.git
-    git push -u origin main
+    git push
     ```
-<img src="graphics/push_to_repo.gif" width="1000"/>
-
+*Note: If the system ask for the credentials, introduce the username and the token that you created before on settings>developer settings>Personal access tokens>Tokens (classic)*
 
 ## Customize Jenkins 
 *Prerequisites:*\
