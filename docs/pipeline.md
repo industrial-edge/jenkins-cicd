@@ -230,7 +230,7 @@ By default, Jenkins is pulling docker images from [https://hub.docker.com/](http
 
 
     ```bash
-    cd docker/dockerfile
+    cd docker
     chmod +x iectl
     docker login -u <dockerID> -p <password>
     docker build -t <dockerID>/<repo_image> .
@@ -242,7 +242,7 @@ To successfully pull images form your private docker container registry, you nee
 
 1) Go to "Manage Jenkins" section in Home Page. 
 
-2) Click on "Manage Credentials" tab and click on "global" under Jenkins credential domain. 
+2) Click on "Credentials" on the "Security" tab and click on "global" under Jenkins credential domain. 
 
 3) Click on "Add Credentials" and fill in the form with following information: 
 
@@ -262,7 +262,7 @@ To use environment variables in your Jenkins pipelines, follow these instruction
 
 1) Go to the "Manage Jenkins" option on Home Page. 
 
-2) Navigate to the "Configure System" tab and scroll down to the "Global properties" information. 
+2) Navigate to the "System Configuration" label and click on "system". Scroll down to the "Global properties" information. 
 
 3) Check in the "Environment variables" and click "Add". 
 
@@ -286,7 +286,7 @@ To use environment variables in your Jenkins pipelines, follow these instruction
     ```
     ```txt
     - Name: ICON_PATH
-    - Value: <absolute-path-to-the-icon>
+    - Value: <path-to-the-icon>
     ```
     ```txt
     - Name: APP_NAME
@@ -298,9 +298,12 @@ To use environment variables in your Jenkins pipelines, follow these instruction
     - Name: DOCKER_IMAGE_CLI
     - Value: <docker-image-cli>
     ```
+5) Click on "Save".
+
 *Notes:*\
 *- IEM_URL environment variable has to be this format: https://iemip:9443* \
 *- App ID can be found in IEM under "My Projects -> Application Details -> Show Keys"*
+*- The iconpath is the path of the icon inside the image. You have to check it where is on the image using the Dockerfile file*
 
 <img src="graphics/create_env.gif" width="1000"/>
 
