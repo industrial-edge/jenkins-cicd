@@ -10,15 +10,9 @@ node {
                 def trimmedImage = "$DOCKER_IMAGE_CLI".trim()
                 def trimmedIcon = "$ICON_PATH".trim()
 
-                echo "1"
-
                 docker.image(trimmedImage).inside(""" --link ${c.id}:docker --privileged -u root """) {
                     
-                    echo "2"
-
                     stage('Build') {
-
-                        echo "3"
 
                         sh """
                             cd app
