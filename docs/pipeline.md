@@ -230,7 +230,7 @@ By default, Jenkins is pulling docker images from [https://hub.docker.com/](http
 
 
     ```bash
-    cd docker
+    cd docker/dockerfile
     chmod +x iectl
     docker login -u <dockerID> -p <password>
     docker build -t <dockerID>/<repo_image> .
@@ -302,7 +302,7 @@ To use environment variables in your Jenkins pipelines, follow these instruction
 
 *Notes:*\
 *- IEM_URL environment variable has to be this format: https://iemip:9443* \
-*- App ID can be found in IEM under "My Projects -> Application Details -> Show Keys"*
+*- App ID can be found in IEM under "My Projects -> Application Details -> Show Keys"* \
 *- The iconpath is the path of the icon inside the image. You have to check it where is on the image using the Dockerfile file*
 
 <img src="graphics/create_env.gif" width="1000"/>
