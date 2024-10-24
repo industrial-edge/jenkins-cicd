@@ -303,7 +303,7 @@ To use environment variables in your Jenkins pipelines, follow these instruction
 *Notes:*\
 *- IEM_URL environment variable has to be this format: https://iemip:9443* \
 *- App ID can be found in IEM under "My Projects -> Application Details -> Show Keys"* \
-*- The iconpath is the path of the icon inside the image. You have to check it where is on the image using the Dockerfile file*
+*- If you use the option B (docker) the iconpath is the path of the icon inside the image. You have to check it where is on the image using the Dockerfile file*
 
 <img src="graphics/create_env.gif" width="1000"/>
 
@@ -311,7 +311,7 @@ To use environment variables in your Jenkins pipelines, follow these instruction
 
 1) Go to "New Item" section in the Home Page. 
 
-2) Click on "Pipeline" and give your pipeline a name. 
+2) Click on "Pipeline" and give your pipeline a name (to avoid errors, please, without spaces). 
 
 3) Click "OK". Configuration page opens. 
 
